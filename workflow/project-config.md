@@ -17,7 +17,8 @@ Every agent reads this file. Replace each `<...>` value. Leave a line as `UNKNOW
 
 - Bench command prefix: when Claude Code runs INSIDE WSL (recommended, open it in the app folder): `cd ~/frappe-bench && bench ...`. When Claude Code runs on Windows: `wsl -d Ubuntu -- bash -lc "cd ~/frappe-bench && bench ..."`. Node comes from nvm (v24.21.0, with yarn); `~/.profile` loads nvm so login and tool shells can run `bench build`. Docker Desktop and the frappe_docker clone at `E:/sabari/ERP/frappe_docker` are NOT used.
 - Local bench path: `/home/dev/frappe-bench` inside WSL Ubuntu (Linux user `dev`; from Windows Explorer `//wsl.localhost/Ubuntu/home/dev/frappe-bench`). The agent team now lives inside the app repo at `apps/safc_custom_erp`; the copy under `E:/sabari/ERP_Custom_Agents` is the original export and no longer the working copy.
-- Dev site (developer works here): erp.localhost (decided by Sabari-dev on 05-11-2026; the only site on the bench, apps: frappe, erpnext)
+- Dev site (developer works here): erp.localhost (decided by Sabari-dev on 05-11-2026). Apps installed 05-11-2026 to mirror production: frappe 16.36.1, erpnext 16.37.0, hrms 16.53.1, india_compliance 16.11.0, safc_custom_erp. Production runs slightly older hrms (16.20.1) and india_compliance (16.10.0); same major version.
+- Bench services: `bench migrate`, `install-app` and tests need Redis (ports 11000 queue, 13000 cache) and MariaDB running. Before a build session run `cd ~/frappe-bench && bench start` in a separate WSL terminal, or at minimum `redis-server config/redis_queue.conf --daemonize yes` and the same for `redis_cache.conf`. A `Connection refused ... :11000` error means this was skipped.
 - Test site (tester works here): erp.localhost — same site as dev (decided 05-11-2026)
 
 ## Branches
