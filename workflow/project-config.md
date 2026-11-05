@@ -8,7 +8,7 @@ Every agent reads this file. Replace each `<...>` value. Leave a line as `UNKNOW
 - Frappe version: 16.36.1 (branch `version-16`, commit 97a5dd9) — verified on 05-11-2026
 - Custom app name: safc_custom_erp
 - Custom app git repo: https://github.com/mrgolisoda01/custom_erp_next.git
-- Custom app status: CREATED on 05-11-2026 with `bench new-app` (v0.0.1, branch `develop`), installed on `erp.localhost`. Lives at `/home/dev/frappe-bench/apps/safc_custom_erp` in WSL. Local branches `develop`, `staging`, `main`; remote `origin` points at the repo above. First push to GitHub still pending (needs `gh auth login` in WSL).
+- Custom app status: CREATED on 05-11-2026 with `bench new-app` (v0.0.1, branch `develop`), installed on `erp.localhost`. Lives at `/home/dev/frappe-bench/apps/safc_custom_erp` in WSL. Local branches `develop`, `staging`, `main`; remote `origin` points at the repo above. Pushed to GitHub on 05-11-2026; `develop` is the default branch. Repo is PUBLIC.
 - Python version on bench: 3.14.7 (`~/frappe-bench/env/bin/python` in WSL). Windows has 3.14.8 but the bench never uses it.
 - Node version on bench: v22.22.1
 - Test base class: `from frappe.tests import IntegrationTestCase` (and `UnitTestCase`) — import verified on this bench on 05-11-2026
