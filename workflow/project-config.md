@@ -29,7 +29,7 @@ Every agent reads this file. Replace each `<...>` value. Leave a line as `UNKNOW
 
 ## Environments
 
-- Deploy method: NOT SET UP YET (decided 05-11-2026) — no staging or production server exists. Agents stop after `/document`; `/deploy` must not be run until this line names a method (bench-over-ssh | docker | frappe-cloud | manual) and `workflow/environments.env` is filled in.
+- Deploy method: NOT SET UP YET (decided 05-11-2026). Production is Frappe Cloud, so the eventual method is frappe-cloud: the partner must add the `safc_custom_erp` GitHub repo to the site's bench group once, then each release is a push to `main` plus a deploy from the Frappe Cloud dashboard. Staging = a Frappe Cloud staging site or none. — no staging or production server exists. Agents stop after `/document`; `/deploy` must not be run until this line names a method (bench-over-ssh | docker | frappe-cloud | manual) and `workflow/environments.env` is filled in.
 - Staging URL: UNKNOWN — typed as https://staging.erp_safc.com but an underscore is not a valid hostname and it does not resolve (checked 05-11-2026); `staging.safc.com` does resolve. Fix when the server exists.
 - Production URL: UNKNOWN — intended https://erp.safc.com, does not resolve in public DNS as of 05-11-2026. Fix when the server exists.
 - Hosts, paths and sites for deploy.sh live in `workflow/environments.env` (never commit that file).
@@ -47,7 +47,7 @@ Every agent reads this file. Replace each `<...>` value. Leave a line as `UNKNOW
 
 - URL: https://golisoda.m.frappe.cloud — Frappe Cloud, partner-hosted. Dashboard login (cloud.frappe.io) is held by the partner.
 - Apps: frappe 16.36.1, erpnext 16.37.0, india_compliance 16.10.0, hrms 16.20.1, frappe_assistant_core 3.0.0, golisoda 0.0.1, franchise_agreement 0.0.1.
-- Existing custom apps: `golisoda` (modules: golisoda, Collection Management, Franchise Daily Profit) and `franchise_agreement`. Their git repos are connected to the Frappe Cloud bench; access to those repos is PENDING (ask the partner). DECISION PENDING: work in those apps vs. keep `safc_custom_erp` as a separate app.
+- Existing custom apps: `golisoda` (modules: golisoda, Collection Management, Franchise Daily Profit) and `franchise_agreement`. Their git repos are connected to the Frappe Cloud bench; access to those repos is PENDING (ask the partner). DECIDED 05-11-2026 (Sabari-dev): Option B — all new work goes into `safc_custom_erp` as a separate app. Agents treat `golisoda` and `franchise_agreement` as read-only black boxes: never modify them; integrate through hooks, custom fields and APIs only; when a requirement needs a change inside them, flag it as BLOCKED for the partner.
 - Hand-made customisations not in any app: ~413 Custom Fields without module, 427 Property Setters, 7 Client Scripts, 6 Server Scripts (Item Sync, Sales Invoice Sync, Stock Entry Sync are the Yolo integration), 6 Print Formats, 2 Workflows (Purchase Order active, Expense Claim inactive), 13 custom Roles. Candidates for export as fixtures.
 - Data volume: 9,132 Sales Invoices, 2,207 Sales Orders, 1,358 Purchase Orders, 948 Purchase Invoices, 1,442 Customers, 658 Items, 446 Warehouses, 185 Employees, 88 Companies.
 - Backup for the dev site: not downloadable from the desk Backups page; needs the Frappe Cloud dashboard (database backup + backup encryption key). PENDING from the partner.
