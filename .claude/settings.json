@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(bash scripts/deploy.sh production:*)",
+      "Bash(./scripts/deploy.sh production:*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(bench drop-site:*)",
+      "Bash(bench reinstall:*)",
+      "Read(./.env)",
+      "Read(./workflow/environments.env)"
+    ]
+  }
+}
