@@ -38,10 +38,20 @@ Every agent reads this file. Replace each `<...>` value. Leave a line as `UNKNOW
 
 ## Business context
 
-- Companies in ERPNext: SAFC
-- Key roles: Sales User, Sales Manager, Accounts User, Stock User, custom roles
+- Companies in ERPNext: 88 companies (franchise model). Default company: Mr.GoliSoda. SOUTH ASIAN FOODS CORPORATION (SAFC) is one of them. Verified on the live site 05-11-2026.
+- Key roles: Sales User, Sales Manager, Accounts User, Stock User, plus 13 custom roles on the live site (Finance Manager, Finance Team, Operation Head, State Head, Store Incharge, Purchase Manager (Goli Soda), Logistics & Warehouse Manager, HR Manager(Golisoda), Senior HR Executive, Senior MIS Executive, Expense Creator, Employee Self Service, Technicians)
 - Language / locale: English, INR, Asia/Kolkata, DD-MM-YYYY
 - GST / tax rules that always apply: `UNKNOWN`
+
+## Live production site (read-only inventory taken 05-11-2026)
+
+- URL: https://golisoda.m.frappe.cloud — Frappe Cloud, partner-hosted. Dashboard login (cloud.frappe.io) is held by the partner.
+- Apps: frappe 16.36.1, erpnext 16.37.0, india_compliance 16.10.0, hrms 16.20.1, frappe_assistant_core 3.0.0, golisoda 0.0.1, franchise_agreement 0.0.1.
+- Existing custom apps: `golisoda` (modules: golisoda, Collection Management, Franchise Daily Profit) and `franchise_agreement`. Their git repos are connected to the Frappe Cloud bench; access to those repos is PENDING (ask the partner). DECISION PENDING: work in those apps vs. keep `safc_custom_erp` as a separate app.
+- Hand-made customisations not in any app: ~413 Custom Fields without module, 427 Property Setters, 7 Client Scripts, 6 Server Scripts (Item Sync, Sales Invoice Sync, Stock Entry Sync are the Yolo integration), 6 Print Formats, 2 Workflows (Purchase Order active, Expense Claim inactive), 13 custom Roles. Candidates for export as fixtures.
+- Data volume: 9,132 Sales Invoices, 2,207 Sales Orders, 1,358 Purchase Orders, 948 Purchase Invoices, 1,442 Customers, 658 Items, 446 Warehouses, 185 Employees, 88 Companies.
+- Backup for the dev site: not downloadable from the desk Backups page; needs the Frappe Cloud dashboard (database backup + backup encryption key). PENDING from the partner.
+- Rule: everything on this site is read-only for agents; no document is created, changed or cancelled there.
 
 ## Coding standards
 
